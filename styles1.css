@@ -1,0 +1,171 @@
+/* About Page Specific Styles */
+
+body {
+    background: linear-gradient(to right, #ffb6c1, #e84393);
+    font-family: Arial, sans-serif; /* Example font-family */
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1000;
+    border-bottom: 1px solid #000; /* Maintain border style */
+}
+
+.header-container nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    max-width: 80px;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.0em;
+}
+
+.about-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+}
+
+.about-book {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 192, 203, 0.5); /* Light pink background */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px; /* Adjust spacing between boxes */
+}
+
+.about-box {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 192, 203, 0.5); /* Light pink background */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px; /* Adjust spacing between boxes */
+}
+
+.about-content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.about-content h1 {
+    font-size: 2.5em;
+    color: hsl(331, 98%, 35%);
+    font-weight: bold;
+}
+
+.about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.about-content ul {
+    font-size: 1.0em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.about-image {
+    width: 40%;
+    height: auto;
+    display: block;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+/* CSS for Slideshow */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+  }
+  
+  .mySlides {
+    display: none;
+    animation: fadeEffect 2s;
+  }
+  
+  @keyframes fadeEffect {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .about-book,
+    .about-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-content,
+    .about-image {
+        width: 100%;
+    }
+
+    .about-content {
+        padding: 20px;
+    }
+
+    .about-image {
+        width: 80%;
+        margin: 10px auto;
+    }
+
+    .about-content h1 {
+        font-size: 2em; /* Adjusted font size for smaller screens */
+    }
+
+    .about-content p {
+        font-size: 1em; /* Adjusted font size for smaller screens */
+    }
+
+    .header-container {
+        padding: 10px 20px;
+        border-bottom: 1px solid #000; /* Maintain border style */
+    }
+}
+
+@media (max-width: 480px) {
+    .about-content h1 {
+        font-size: 1.8em; /* Further adjust font size for smaller screens */
+    }
+
+    .about-content p {
+        font-size: 0.9em; /* Further adjust font size for smaller screens */
+    }
+}

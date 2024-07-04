@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self Diagnosis - PCOS Management</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+  <header class="header-container">
+    <nav>
+      <img class="logo" src="images/1-removebg-preview (1).png" alt="PCOS Management Logo">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="selfdiagnosis.html">SelfDiagnosis</a></li>
+        <li><a href="dietplanner.html">DietPlanner</a></li>
+        <li><a href="yogaplanner.html">YogaPlanner</a></li>
+        <li><a href="cycletracker.html">CycleTracker</a></li>
+        <li><a href="lifestylesuggestion.html">LifestyleSuggestions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <div class="main-content">
+    <div class="image-container">
+      <img src="images\graphic-Get-Matched-Take-the-PCOS-Supplement-Quiz-removebg-preview.png" alt="Image Description">
+    </div>
+    <div class="pop-out-box">
+      <h2>Self Diagnosis</h2>
+      <form id="self-diagnosis-form" class="horizontal-form">
+        <div class="form-group">
+          <label for="missed-periods" class="symptom-question">
+            <input type="checkbox" id="missed-periods" name="symptoms" value="Missed periods, irregular periods, or very light periods">
+            Missed periods, irregular periods, or very light periods
+          </label>
+          <label for="large-ovaries" class="symptom-question">
+            <input type="checkbox" id="large-ovaries" name="symptoms" value="Ovaries that are large or have many cysts">
+            Ovaries that are large or have many cysts
+          </label>
+          <label for="excess-hair" class="symptom-question">
+            <input type="checkbox" id="excess-hair" name="symptoms" value="Excess body hair, including the chest, stomach, and back (hirsutism)">
+            Excess body hair, including the chest, stomach, and back (hirsutism)
+          </label>
+          <label for="weight-gain" class="symptom-question">
+            <input type="checkbox" id="weight-gain" name="symptoms" value="Weight gain, especially around the belly (abdomen)">
+            Weight gain, especially around the belly (abdomen)
+          </label>
+          <label for="acne" class="symptom-question">
+            <input type="checkbox" id="acne" name="symptoms" value="Acne or oily skin">
+            Acne or oily skin
+          </label>
+          <label for="baldness" class="symptom-question">
+            <input type="checkbox" id="baldness" name="symptoms" value="Male-pattern baldness or thinning hair">
+            Male-pattern baldness or thinning hair
+          </label>
+          <label for="infertility" class="symptom-question">
+            <input type="checkbox" id="infertility" name="symptoms" value="Infertility">
+            Infertility
+          </label>
+          <label for="skin-tags" class="symptom-question">
+            <input type="checkbox" id="skin-tags" name="symptoms" value="Small pieces of excess skin on the neck or armpits (skin tags)">
+            Small pieces of excess skin on the neck or armpits (skin tags)
+          </label>
+          <label for="dark-skin-patches" class="symptom-question">
+            <input type="checkbox" id="dark-skin-patches" name="symptoms" value="Dark or thick skin patches on the back of the neck, in the armpits, and under the breasts">
+            Dark or thick skin patches on the back of the neck, in the armpits, and under the breasts
+          </label>
+        </div>
+        <div class="form-group">
+          <button type="button" id="submit-btn">Submit</button>
+        </div>
+      </form>
+      <!-- Results will be displayed here -->
+      <div id="diagnosis-results"></div>
+    </div>
+  </div>
+
+   <!-- Separate footer box -->
+  <footer class="footer-container">
+    <div class="footer-content">
+      <p>If you want more accurate results, please upload your sonography report.</p>
+      <input type="file" id="sonography-file" accept=".pdf,.doc,.docx">
+    </div>
+  </footer>
+<script src="script1.js"></script>
+</body>
+</html>

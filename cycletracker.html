@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cycle Tracker</title>
+  <link rel="stylesheet" href="styles6.css">
+</head>
+<body>
+  <header class="header-container">
+    <nav>
+      <img class="logo" src="images/1-removebg-preview (1).png" alt="PCOS Management Logo">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="selfdiagnosis.html">SelfDiagnosis</a></li>
+        <li><a href="dietplanner.html">DietPlanner</a></li>
+        <li><a href="yogaplanner.html">YogaPlanner</a></li>
+        <li><a href="cycletracker.html">CycleTracker</a></li>
+        <li><a href="lifestylesuggestion.html">LifestyleSuggestions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="tracker">
+        <h1 class="tracker-title">Cycle Tracker</h1>
+        <div class="calendar-container">
+            <div id="calendar" class="calendar">
+                <!-- Calendar will be dynamically generated here -->
+            </div>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-color period-dot"></span> 
+            </div>
+        </div>
+      <div class="info-container">
+        <div class="info-box">
+          <h2>Monitor Ovulation and Fertility Days</h2>
+          <img src="images/ovulation.jpg" alt="Ovulation and Fertility Days">
+        </div>
+        <div class="info-box">
+          <h2>Be Prepared for Your Period</h2>
+          <img src="images/periods.jpg" alt="Period Tracker">
+        </div>
+      </div>
+      <div class="form-container">
+        <form id="cycleForm">
+          <div class="form-group">
+            <label for="lastPeriod">First Day of Your Last Period:</label>
+            <input type="date" id="lastPeriod" name="lastPeriod" required>
+          </div>
+          <div class="form-group">
+            <label for="periodDuration">How Long Did It Last?</label>
+            <input type="number" id="periodDuration" name="periodDuration" required>
+          </div>
+          <div class="form-group">
+            <label for="cycleLength">Average Length of Cycles (days):</label>
+            <input type="number" id="cycleLength" name="cycleLength" required>
+          </div>
+          
+          <button type="submit">Track</button>
+        </form>
+      </div>
+      
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <div id="cycleResult">
+        <!-- Cycle tracking result will be shown here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script4.js"></script>
+</body>
+</html>

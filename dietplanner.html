@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diet Planner</title>
+  <link rel="stylesheet" href="styles3.css">
+</head>
+<body>
+  <header class="header-container">
+    <!-- Navigation bar -->
+    <nav>
+        <img class="logo" src="images/1-removebg-preview (1).png" alt="PCOS Management Logo">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="selfdiagnosis.html">SelfDiagnosis</a></li>
+          <li><a href="dietplanner.html">DietPlanner</a></li>
+          <li><a href="yogaplanner.html">YogaPlanner</a></li>
+          <li><a href="cycletracker.html">CycleTracker</a></li>
+          <li><a href="lifestylesuggestion.html">LifestyleSuggestions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="text-container">
+        <h1 class="hero-title">Personalized Diet Planner</h1>
+        <h2 class="hero-title">Optimize Your Nutrition for PCOS Management</h2>
+        <form id="dietPlannerForm">
+          <div class="form-group">
+            <label for="mealTime">Select Meal Time:</label>
+            <select id="mealTime" name="mealTime" required>
+              <option value="">Select an option</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dietPreference">Select Diet Preference:</label>
+            <select id="dietPreference" name="dietPreference" required>
+              <option value="">Select an option</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="non-vegetarian">Non-Vegetarian</option>
+            </select>
+          </div>
+          <button type="submit">Generate Plan</button>
+        </form>
+        <div id="dietPlanPopup" class="popup">
+          <h3>5-Day Meal Plan</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Meal</th>
+              </tr>
+            </thead>
+            <tbody id="mealPlanTableBody">
+              <!-- Meal plan details will be inserted here by JavaScript -->
+            </tbody>
+          </table>
+          <button class="close-btn" onclick="closePopup()">Close</button>
+        </div>
+      </div>
+      <img class="hero-image" src="images\PCOS-removebg-preview.png" alt="Diet Planner Illustration">
+    </section>
+  </main>
+  <footer class="footer-container">
+    <div class="footer-content">
+      <a href="foodtips.html" class="submit-button">Food Tips</a>
+    </div>
+  </footer>
+  <script src="script2.js"></script>
+</body>
+</html>

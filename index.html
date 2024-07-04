@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCOS Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header-container">
+    <nav>
+      <img class="logo" src="images/1-removebg-preview (1).png" alt="PCOS Management Logo">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="selfdiagnosis.html">SelfDiagnosis</a></li>
+        <li><a href="dietplanner.html">DietPlanner</a></li>
+        <li><a href="yogaplanner.html">YogaPlanner</a></li>
+        <li><a href="cycletracker.html">CycleTracker</a></li>
+        <li><a href="lifestylesuggestion.html">LifestyleSuggestions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="text-container">
+        <h1 class="hero-title">Unveil the Mystery:</h1>
+        <h2 class="hero-title">Take Control of Your PCOS Journey</h2>
+        <form id="predictionForm">
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+          </div>
+          <div class="form-group">
+            <label for="bmi">BMI:</label>
+            <input type="number" id="bmi" name="bmi" step="0.1" required>
+          </div>
+          <button type="submit">Predict</button>
+        </form>
+        <div id="predictionResult" class="result-container">
+          <!-- Result will be shown here -->
+        </div>
+      </div>
+      <img class="hero-image" src="images/gyne-cancers-removebg-preview.png" alt="PCOS Illustration">
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+/* About Page Specific Styles */
+
+body {
+  background: linear-gradient(to right, #ffb6c1, #e84393);
+  font-family: Arial, sans-serif; /* Example font-family */
+  margin: 0;
+  padding: 0;
+}
+
+.header-container {
+  background-color: rgba(234, 91, 144, 0.1);
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid #000; /* Maintain border style */
+}
+
+.header-container nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  max-width: 80px; /* Adjusted logo size */
+  height: auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px; /* Adjusted spacing between navigation items */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.0em; /* Adjusted font size for navigation links */
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  padding: 50px 20px;
+  position: relative;
+}
+
+.text-container {
+  max-width: 50%; /* Adjusted to allow more space for the image */
+}
+
+.hero-title {
+  font-size: 2em; /* Increased font size for hero title */
+  font-weight: bold; /* Added bold font weight */
+  color: hsl(331, 98%, 35%);
+}
+
+.result-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.2); /* Light black background */
+  max-width: 400px; /* Adjust the maximum width as needed */
+  margin-left: 0; /* Align to the left */
+  color: #0d0d0d; /* Text color changed to white */
+}
+
+.hero-image {
+  width: 50%; /* Make the image fill its container */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 50px; /* Increased margin to move the image lower */
+}
+
+.predict-box {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background for predict box */
+  color: #fff; /* Text color changed to white */
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: calc(50% - 16px); /* Adjusted width for input fields */
+  padding: 8px;
+  font-size: 0.9em; /* Reduced font size for input fields */
+}
+
+.form-group button {
+  padding: 8px 16px; /* Adjusted button padding */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .text-container {
+    max-width: 100%; /* Full width on smaller screens */
+    margin-bottom: 20px; /* Space between text and image */
+  }
+
+  .hero {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2em; /* Adjust font size for smaller screens */
+  }
+
+  .hero-image {
+    margin-left: 0; /* Remove left margin */
+    margin-top: 20px; /* Add top margin */
+  }
+
+  .form-group input {
+    width: 100%; /* Full width inputs on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5em; /* Further adjust font size for smaller screens */
+  }
+
+  nav ul li {
+    margin: 0 5px; /* Reduce spacing between navigation items */
+  }
+
+  nav ul li a {
+    font-size: 0.8em; /* Reduce font size for navigation links */
+  }
+}
