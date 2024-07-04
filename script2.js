@@ -1,33 +1,36 @@
 document.getElementById('dietPlannerForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
-    
+
     // Get selected meal time and diet preference
     var mealTime = document.getElementById('mealTime').value;
     var dietPreference = document.getElementById('dietPreference').value;
-    
+
+    console.log('Selected Meal Time:', mealTime);
+    console.log('Selected Diet Preference:', dietPreference);
+
     // Get the container where the meal plan will be displayed
     var mealPlanTableBody = document.getElementById('mealPlanTableBody');
-    
+
     // Clear any existing meal plan
     mealPlanTableBody.innerHTML = '';
-  
-    // Array containing meal plan data for all 7 days (Day 1 to Day 7)
+
+    // Array containing meal plan data for all 7 days
     var mealPlanData = [
-      {
-        day: 'Day 1',
-        breakfast: {
-          vegetarian: "Masala Oats: Cook rolled oats with water, turmeric, cumin seeds, mustard seeds, chopped onions, tomatoes, and green chilies. Serve with a side of yogurt.",
-          nonVegetarian: "Grilled Fish: Marinate fish fillets with lemon juice, turmeric, chili powder, and coriander powder. Grill until cooked. Serve with a side of mixed vegetable salad."
-        },
-        lunch: {
-          vegetarian: "Chickpea Spinach Curry: Cook chickpeas with spinach, onions, tomatoes, ginger, garlic, and Indian spices. Serve with brown rice or whole wheat roti.",
-          nonVegetarian: "Chicken Sandwich: Fill whole wheat bread with grilled chicken slices, lettuce, tomatoes, and cucumber. Serve with a side of yogurt."
-        },
-        dinner: {
-          vegetarian: "Paneer Tikka: Marinate paneer cubes with yogurt and spices like garam masala, turmeric, and chili powder. Grill or bake until golden. Serve with mint chutney and salad.",
-          nonVegetarian: "Tandoori Chicken: Marinate chicken with yogurt and tandoori spices like garam masala, ginger, garlic, and chili powder. Grill until charred. Serve with mint chutney and salad."
-        }
+        {
+      day: 'Day 1',
+      breakfast: {
+        vegetarian: "Masala Oats: Cook rolled oats with water, turmeric, cumin seeds, mustard seeds, chopped onions, tomatoes, and green chilies. Serve with a side of yogurt.",
+        nonVegetarian: "Grilled Fish: Marinate fish fillets with lemon juice, turmeric, chili powder, and coriander powder. Grill until cooked. Serve with a side of mixed vegetable salad."
       },
+      lunch: {
+        vegetarian: "Chickpea Spinach Curry: Cook chickpeas with spinach, onions, tomatoes, ginger, garlic, and Indian spices. Serve with brown rice or whole wheat roti.",
+        nonVegetarian: "Chicken Sandwich: Fill whole wheat bread with grilled chicken slices, lettuce, tomatoes, and cucumber. Serve with a side of yogurt."
+      },
+      dinner: {
+        vegetarian: "Paneer Tikka: Marinate paneer cubes with yogurt and spices like garam masala, turmeric, and chili powder. Grill or bake until golden. Serve with mint chutney and salad.",
+        nonVegetarian: "Tandoori Chicken: Marinate chicken with yogurt and tandoori spices like garam masala, ginger, garlic, and chili powder. Grill until charred. Serve with mint chutney and salad."
+      }
+    },
       {
         day: 'Day 2',
         breakfast: {

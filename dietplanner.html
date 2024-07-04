@@ -44,13 +44,13 @@
             <select id="dietPreference" name="dietPreference" required>
               <option value="">Select an option</option>
               <option value="vegetarian">Vegetarian</option>
-              <option value="non-vegetarian">Non-Vegetarian</option>
+              <option value="nonVegetarian">Non-Vegetarian</option>
             </select>
           </div>
           <button type="submit">Generate Plan</button>
         </form>
         <div id="dietPlanPopup" class="popup">
-          <h3>5-Day Meal Plan</h3>
+          <h3>7-Day Meal Plan</h3>
           <table>
             <thead>
               <tr>
@@ -60,12 +60,13 @@
             </thead>
             <tbody id="mealPlanTableBody">
               <!-- Meal plan details will be inserted here by JavaScript -->
+              <script src="script2.js"></script>
             </tbody>
           </table>
           <button class="close-btn" onclick="closePopup()">Close</button>
         </div>
       </div>
-      <img class="hero-image" src="images\PCOS-removebg-preview.png" alt="Diet Planner Illustration">
+      <img class="hero-image" src="images/PCOS-removebg-preview.png" alt="Diet Planner Illustration">
     </section>
   </main>
   <footer class="footer-container">
