@@ -1,91 +1,143 @@
 /* About Page Specific Styles */
 
 body {
-    background: linear-gradient(to right, #ffb6c1, #e84393);
-    font-family: Arial, sans-serif; /* Example font-family */
-    margin: 0;
-    padding: 0;
+  background: linear-gradient(to right, #ffb6c1, #e84393);
+  font-family: Arial, sans-serif; /* Example font-family */
+  margin: 0;
+  padding: 0;
 }
 
 .header-container {
-    background-color: rgba(255, 255, 255, 0);
-    padding: 10px 20px;
-    position: relative;
-    z-index: 1000;
-    border-bottom: 1px solid #000; /* Maintain border style */
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid #000; /* Maintain border style */
 }
-  .header-container nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    max-width: 80px;
-    height: auto;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    margin: 0 10px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #000000;
-    font-weight: bold;
-  }
-  
-  .food-tips {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
+
+.header-container nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  max-width: 80px;
+  height: auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+}
+
+.food-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
+  position: fixed;
+  top: 60%; /* Center vertically */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Ensure the container appears below the navigation bar */
+}
+
+.container h1 {
+  font-size: 2em;
+}
+
+.container p {
+  margin-bottom: 20px;
+}
+
+.container ul {
+  text-align: left;
+}
+
+.container button {
+  padding: 8px 16px;
+  background-color: #e84393;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
   .container {
-    text-align:center;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: auto;
-    position:fixed;
-    top: 59%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1; /* Ensure the container appears below the navigation bar */
+    max-width: 450px; /* Adjust width for medium screens */
+    padding: 15px; /* Adjust padding */
   }
+
   .container h1 {
-    font-size: 2em;
+    font-size: 1.8em; /* Adjust font size */
   }
-  
-  .container p {
-    margin-bottom: 20px;
-  }
-  
-  .container ul {
-    text-align: left;
-  }
-  
+
   .container button {
-    padding: 8px 16px;
-    background-color: #e84393;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+    padding: 7px 14px; /* Adjust padding */
   }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%; /* Full width with margins for smaller screens */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .container h1 {
+    font-size: 1.5em; /* Adjust font size */
+  }
+
+  .container button {
+    padding: 6px 12px; /* Adjust padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 95%; /* Full width with margins for very small screens */
+    padding: 8px; /* Adjust padding */
+  }
+
+  .container h1 {
+    font-size: 1.2em; /* Adjust font size */
+  }
+
+  .container button {
+    padding: 5px 10px; /* Adjust padding */
+  }
+
   .footer-container {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
+    padding: 8px 10px; /* Adjust padding */
   }
-  
+}

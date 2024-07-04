@@ -153,3 +153,97 @@ nav ul li a {
     color: #0b0b0b;
     font-weight: bold;
 }
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .hero-image {
+        width: 40%;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+
+    .cta-button {
+        padding: 0.4em 0.8em;
+    }
+
+    .lifestyle-suggestions {
+        padding: 1.5em;
+    }
+
+    .image-row img {
+        width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 80%;
+        max-width: none;
+        margin-top: 1em;
+    }
+
+    .lifestyle-suggestions {
+        padding: 1em;
+    }
+
+    .image-row {
+        flex-direction: column;
+    }
+
+    .image-row img {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        max-width: 60px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5em;
+    }
+
+    .cta-button {
+        padding: 0.3em 0.6em;
+        font-size: 0.9em;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: none;
+        border-radius: 0;
+    }
+
+    .lifestyle-suggestions {
+        padding: 0.5em;
+    }
+
+    .image-row img {
+        width: 100%;
+        max-width: none;
+    }
+}

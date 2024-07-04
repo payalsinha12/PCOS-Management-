@@ -145,3 +145,93 @@ button:hover {
 .login-section p a:hover {
   text-decoration: underline;
 }
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .register-section, .login-section {
+    max-width: 350px; /* Adjust width for medium screens */
+  }
+
+  .form-group input {
+    width: 90%; /* Adjust width for input fields */
+  }
+
+  .modal-content {
+    max-width: 90%; /* Adjust max-width for better display on smaller screens */
+  }
+
+  .header-container nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  nav ul li {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-section, .login-section {
+    max-width: 300px; /* Adjust width for smaller screens */
+    padding: 15px;
+    margin: 30px auto;
+  }
+
+  .register-section h1, .login-section h1 {
+    font-size: 1.8em; /* Adjust font size */
+  }
+
+  .form-group input {
+    width: 100%; /* Full width for input fields */
+  }
+
+  .modal-content {
+    max-width: 95%; /* Adjust max-width for very small screens */
+  }
+
+  .header-container nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-section, .login-section {
+    max-width: 250px; /* Adjust width for very small screens */
+    padding: 10px;
+    margin: 20px auto;
+  }
+
+  .register-section h1, .login-section h1 {
+    font-size: 1.5em; /* Adjust font size */
+  }
+
+  .form-group input {
+    width: 100%; /* Full width for input fields */
+    padding: 8px;
+  }
+
+  button {
+    padding: 8px 16px; /* Adjust padding */
+    font-size: 0.9em; /* Adjust font size */
+  }
+
+  .modal-content {
+    max-width: 100%; /* Full width for very small screens */
+    padding: 15px;
+  }
+}

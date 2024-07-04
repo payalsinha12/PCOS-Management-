@@ -1,140 +1,139 @@
 /* Global Styles */
 body {
-    background: linear-gradient(to right, #ffb6c1, #e84393);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  background: linear-gradient(to right, #ffb6c1, #e84393);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .header-container {
-    background-color: rgba(255, 255, 255, 0);
-    padding: 10px 20px;
-    position: relative;
-    z-index: 1000;
-    border-bottom: 1px solid #000; /* Maintain border style */
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid #000; /* Maintain border style */
 }
 
 .header-container nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    max-width: 80px;
-    height: auto;
+  max-width: 80px;
+  height: auto;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: #000000;
-    font-weight: bold;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
 }
-  
-  .tracker-title {
-    text-align: center;
-    color: #000000;
-    
-  }
-  
-  .calendar-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  
-  .calendar {
-    border: 1px solid #ddd;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-  }
-  
-  /* Add this to your CSS */
+
+.tracker-title {
+  text-align: center;
+  color: #000000;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.calendar {
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+/* Add this to your CSS */
 .calendar-day {
-    width: 100%;
-    padding: 10px;
-    background-color: #e3f2fd;
-    border-radius: 8px;
-    text-align: center;
-    position: relative; /* Ensure relative positioning for the dot */
+  width: 100%;
+  padding: 10px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  text-align: center;
+  position: relative; /* Ensure relative positioning for the dot */
 }
 
 .period-dot {
-    display: block;
-    width: 8px;
-    height: 8px;
-    background-color:;
-    border-radius: 50%;
-    position: absolute; /* Position the dot inside the day */
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color:;
+  border-radius: 50%;
+  position: absolute; /* Position the dot inside the day */
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-  
-  .info-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 20px;
-  }
-  
-  .info-box {
-    margin: 10px;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 45%;
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  .info-box img {
-    width: 50%;
-    border-radius: 8px;
-  }
-  
-  .form-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  
-  .form-group {
-    margin: 10px;
-  }
-  
-  button {
-    background-color: #d9d6d5;
-    color: rgb(14, 14, 14);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #ff6347;
-  }
-  /* Modal styles */
+.info-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.info-box {
+  margin: 10px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 45%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.info-box img {
+  width: 50%;
+  border-radius: 8px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.form-group {
+  margin: 10px;
+}
+
+button {
+  background-color: #d9d6d5;
+  color: rgb(14, 14, 14);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff6347;
+}
+
+/* Modal styles */
 .modal {
   display: none;
   position: fixed;
@@ -177,4 +176,61 @@ nav ul li a {
   justify-content: center;
   margin: 20px;
 }
-  
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .calendar {
+      grid-template-columns: repeat(5, 1fr);
+  }
+
+  .info-box {
+      width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar {
+      grid-template-columns: repeat(4, 1fr);
+  }
+
+  .info-box {
+      width: 100%;
+  }
+
+  .header-container nav {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  nav ul {
+      flex-direction: column;
+      padding: 0;
+  }
+
+  nav ul li {
+      margin: 10px 0;
+  }
+
+  .modal-content {
+      width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+      max-width: 60px;
+  }
+
+  button {
+      font-size: 0.9em;
+      padding: 8px 16px;
+  }
+
+  .calendar {
+      grid-template-columns: repeat(3, 1fr);
+  }
+
+  .modal-content {
+      width: 95%;
+  }
+}

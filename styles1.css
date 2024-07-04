@@ -52,17 +52,7 @@ nav ul li a {
     flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
 }
 
-.about-book {
-    display: flex;
-    width: 100%;
-    max-width: 1200px;
-    background: rgba(255, 192, 203, 0.5); /* Light pink background */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px; /* Adjust spacing between boxes */
-}
-
+.about-book,
 .about-box {
     display: flex;
     width: 100%;
@@ -106,25 +96,36 @@ nav ul li a {
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
 /* CSS for Slideshow */
 .slideshow-container {
     max-width: 100%;
     position: relative;
     margin: auto;
-  }
-  
-  .mySlides {
+}
+
+.mySlides {
     display: none;
     animation: fadeEffect 2s;
-  }
-  
-  @keyframes fadeEffect {
+}
+
+@keyframes fadeEffect {
     from { opacity: 0; }
     to { opacity: 1; }
-  }
-  
+}
 
 /* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .about-book,
+    .about-box {
+        max-width: 90%; /* Adjust width for medium screens */
+    }
+
+    .about-image {
+        width: 50%; /* Adjust image size for medium screens */
+    }
+}
+
 @media (max-width: 768px) {
     .about-book,
     .about-box {
@@ -167,5 +168,10 @@ nav ul li a {
 
     .about-content p {
         font-size: 0.9em; /* Further adjust font size for smaller screens */
+    }
+
+    .about-image {
+        width: 90%; /* Adjust image size for very small screens */
+        margin: 10px auto;
     }
 }

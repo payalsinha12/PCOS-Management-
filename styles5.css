@@ -11,7 +11,7 @@ body {
     padding: 10px 20px;
     position: relative;
     z-index: 1000;
-    border-bottom: 1px solid #000; /* Maintain border style */
+    border-bottom: 1px solid #000;
 }
 
 .header-container nav {
@@ -45,17 +45,18 @@ nav ul li a {
 /* Yoga Planner Styles */
 .yoga-planner {
     max-width: 900px;
-    margin: 40px auto; /* Center the container and add margin */
-    background-color: #f5eff0; /* Light pink background color */
+    margin: 40px auto;
+    background-color: #f5eff0;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align:justify; /* Center align the content inside */
+    text-align: justify;
 }
-.aa
-{
-    color:#cd0465;
+
+.aa {
+    color: #cd0465;
 }
+
 .yoga-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -157,4 +158,50 @@ button:hover {
     border: 1px solid #ddd;
     margin: 5px;
     background-color: #fff;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .yoga-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .yoga-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .header-container nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        max-width: 60px;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
 }

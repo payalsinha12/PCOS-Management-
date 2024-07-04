@@ -52,10 +52,12 @@ nav ul li a {
   text-align: left;
   padding: 50px 20px;
   position: relative;
+  flex-wrap: wrap; /* Ensure wrapping on smaller screens */
 }
 
 .text-container {
   max-width: 50%; /* Adjusted to allow more space for the image */
+  box-sizing: border-box;
 }
 
 .hero-title {
@@ -123,12 +125,16 @@ nav ul li a {
   }
 
   .hero-image {
-    margin-left: 0; /* Remove left margin */
+    width: 100%; /* Full width image on smaller screens */
     margin-top: 20px; /* Add top margin */
   }
 
   .form-group input {
     width: 100%; /* Full width inputs on smaller screens */
+  }
+
+  .predict-box {
+    padding: 15px; /* Adjust padding on smaller screens */
   }
 }
 
@@ -143,5 +149,10 @@ nav ul li a {
 
   nav ul li a {
     font-size: 0.8em; /* Reduce font size for navigation links */
+  }
+
+  .hero-image {
+    width: 100%; /* Full width image on very small screens */
+    margin: 10px 0; /* Adjust margins */
   }
 }

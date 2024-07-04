@@ -1,223 +1,260 @@
 /* Global styles for the home page */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ffb6c1, #e84393);
-    color: #000; /* Black text color */
-  }
-  
-  .header-container {
-    background-color: rgba(255, 255, 255, 0);
-    padding: 10px 20px;
-    position: relative;
-    z-index: 1000;
-    border-bottom: 1px solid #000;
-  }
-  
-  .header-container nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    max-width: 80px; /* Adjusted logo size */
-    height: auto;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    margin: 0 10px; /* Adjusted spacing between navigation items */
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #000000;
-    font-weight: bold;
-    font-size: 1.0em; /* Adjusted font size for navigation links */
-  }
-  
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #ffb6c1, #e84393);
+  color: #000; /* Black text color */
+}
+
+.header-container {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid #000;
+}
+
+.header-container nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  max-width: 80px; /* Adjusted logo size */
+  height: auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px; /* Adjusted spacing between navigation items */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.0em; /* Adjusted font size for navigation links */
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  padding: 50px 20px;
+  position: relative;
+}
+
+.text-container {
+  max-width: 50%;
+}
+
+.hero-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: hsl(331, 98%, 35%);
+}
+
+.result-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin-left: 0;
+  color: #0d0d0d;
+}
+
+.hero-image {
+  width: 45%;
+  height: auto;
+  margin-top: 50px;
+}
+
+.predict-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: calc(50% - 16px);
+  padding: 8px;
+  font-size: 0.9em;
+}
+
+button {
+  padding: 8px 16px;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #000;
+  background-color: #fff;
+  z-index: 1001;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.popup table,
+.popup th,
+.popup td {
+  border: 1px solid #000;
+}
+
+.popup th,
+.popup td {
+  padding: 8px;
+  text-align: left;
+}
+
+.popup .close-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #e84393;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.footer-container {
+  text-align: center;
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Ensure it spans full width */
+}
+
+.footer-content {
+  display: inline-block;
+}
+
+.submit-button {
+  background-color: #e8e7e8; /* Light green */
+  border: none;
+  color: rgb(11, 11, 11);
+  padding: 10px 20px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.submit-button:hover {
+  background-color: #e7ccce; /* Darker green on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
   .hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    background-color: rgba(255, 255, 255, 0);
-    text-align: left;
-    padding: 50px 20px;
-    position: relative;
+      padding: 40px 10px; /* Adjust padding for medium screens */
   }
-  
+
   .text-container {
-    max-width: 50%;
+      max-width: 100%;
   }
-  
+
   .hero-title {
-    font-size: 2em;
-    font-weight: bold;
-    color: hsl(331, 98%, 35%);
+      font-size: 1.8em; /* Slightly smaller font size */
   }
-  
-  .result-container {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    margin-left: 0;
-    color: #0d0d0d;
-  }
-  
+
   .hero-image {
-    width: 45%;
-    height: auto;
-    margin-top: 50px;
+      width: 50%; /* Adjust width for medium screens */
+      margin-top: 30px;
   }
-  
-  .predict-box {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
+
+  .result-container {
+      max-width: 90%; /* Adjust width for medium screens */
   }
-  
-  .form-group {
-    margin-bottom: 10px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
+
   .form-group input,
   .form-group select {
-    width: calc(50% - 16px);
-    padding: 8px;
-    font-size: 0.9em;
+      width: 100%; /* Full width for inputs on medium screens */
   }
-  
-  button {
-    padding: 8px 16px;
-  }
-  
-  .popup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #000;
-    background-color:  #fff;
-    z-index: 1001;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .popup table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .popup table,
-  .popup th,
-  .popup td {
-    border: 1px solid #000;
-  }
-  
-  .popup th,
-  .popup td {
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .popup .close-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #e84393;
-    color:  #fff;
-    border: none;
-    cursor: pointer;
-  }
-  .footer-container {
-    text-align: center;
-    position: fixed;
-    bottom: 20px; /* Adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .footer-container {
-    text-align: center;
-  }
-  
-  .footer-content {
-    display: inline-block;
-  }
-  
-  .submit-button {
-    background-color: #e8e7e8; /* Green */
-    border: none;
-    color: rgb(11, 11, 11);
-    padding: 10px 20px; /* Adjust padding as needed */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease; /* Add smooth transition */
-  }
-  
-  .submit-button:hover {
-    background-color: #e7ccce; /* Darker green on hover */
-  }
-  
-  
-  
-  @media (max-width: 768px) {
-    .text-container {
-      max-width: 100%;
-      margin-bottom: 20px;
-    }
-  
-    .hero {
+}
+
+@media (max-width: 768px) {
+  .hero {
       flex-direction: column;
       align-items: center;
       text-align: center;
-    }
-  
-    .hero-title {
-      font-size: 2em;
-    }
-  
-    .hero-image {
-      margin-left: 0;
+  }
+
+  .hero-title {
+      font-size: 1.6em; /* Smaller font size for smaller screens */
+  }
+
+  .hero-image {
+      width: 70%; /* Adjust width for smaller screens */
       margin-top: 20px;
-    }
-  
-    .form-group input,
-    .form-group select {
-      width: 100%;
-    }
   }
-  
-  @media (max-width: 480px) {
-    .hero-title {
-      font-size: 1.5em;
-    }
-  
-    nav ul li {
-      margin: 0 5px;
-    }
-  
-    nav ul li a {
-      font-size: 0.8em;
-    }
+
+  .result-container {
+      max-width: 100%; /* Full width on smaller screens */
   }
-  
+
+  .form-group input,
+  .form-group select {
+      width: 100%; /* Full width for inputs on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+      font-size: 1.4em; /* Even smaller font size for very small screens */
+  }
+
+  nav ul li {
+      margin: 0 5px; /* Reduced margin */
+  }
+
+  nav ul li a {
+      font-size: 0.8em; /* Smaller font size for links */
+  }
+
+  .hero-image {
+      width: 80%; /* Wider image for very small screens */
+      margin-top: 15px;
+  }
+
+  .form-group input,
+  .form-group select {
+      font-size: 0.8em; /* Smaller font size for inputs */
+  }
+
+  .submit-button {
+      font-size: 14px; /* Adjust font size for buttons */
+  }
+}
