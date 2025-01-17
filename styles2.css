@@ -46,93 +46,70 @@ nav ul li a {
 /* Main content styles */
 .main-content {
   display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Align items at the top */
-  min-height: calc(100vh - 60px); /* Adjust height to account for header */
+  justify-content: space-between; /* Adjust for balanced spacing */
+  align-items: flex-start; 
+  min-height: calc(100vh - 60px);
   padding: 20px;
-}
-
-.image-container {
-  padding: 20px;
-}
-
-.image-container img {
-  max-width: 80%;
-  height: auto;
-  /* Remove box shadow and any other effects */
-}
-
-.pop-out-box {
-  background-color: rgba(241, 164, 185, 0.9); /* White background with slight opacity */
-  border-radius: 10px;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Pop-out shadow effect */
-  padding: 20px;
-  max-width: 40%; /* Adjusted width */
-  width: 100%;
-}
-
-.pop-out-box h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.horizontal-form {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-}
-
-.form-group {
-  margin-bottom: 10px;
-}
-
-.symptom-question {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.symptom-question input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.form-group button {
-  padding: 10px 20px;
-  font-size: 1em;
+  gap: 20px; /* Add spacing between child elements */
 }
 
 .content-container {
   display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Space between sections */
-  margin-top: 20px;
+  flex-direction: row; /* Ensure side-by-side layout */
+  gap: 20px;
+  flex-wrap: wrap; /* Wrap content for smaller screens */
 }
 
 .self-diagnosis,
 .sonography-upload {
   flex: 1;
-  border: 1px solid #ddd; /* Optional: For better visualization */
+  border: 1px solid #ddd;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.85); /* Slight opacity for contrast */
 }
 
-.sonography-upload .upload-section {
+.self-diagnosis h2,
+.sonography-upload h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #333; /* Enhance text contrast */
+}
+
+.form-group button {
+  padding: 12px 18px;
+  font-size: 1em;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+}
+
+.upload-section {
   display: flex;
+  flex-direction: row;
+  gap: 15px;
   align-items: center;
-  gap: 10px; /* Space between the input and button */
 }
 
 .upload-section input[type="file"] {
-  font-size: 16px;
+  flex: 1;
+  font-size: 14px; /* Adjust size for better readability */
 }
 
 .upload-section button {
-  font-size: 16px;
-  padding: 5px 10px;
-  background-color: #4CAF50; /* Button color */
-  color: white;
-  border: none;
+  font-size: 1em;
+  padding: 10px 15px;
   border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
   cursor: pointer;
 }
 
@@ -140,65 +117,35 @@ nav ul li a {
   background-color: #45a049;
 }
 
-
-
-.footer-content p {
-  margin-bottom: 10px;
-}
-
-.footer-content input[type="file"] {
-  margin-bottom: 10px;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
-  .main-content {
-      padding: 20px 10px; /* Adjust padding for medium screens */
-  }
-
-  .pop-out-box {
-      max-width: 60%; /* Wider width on medium screens */
-  }
-}
-
+/* Responsiveness for better layouts */
 @media (max-width: 768px) {
   .main-content {
-      flex-direction: column;
-      align-items: center; /* Center items vertically */
+    flex-direction: column; /* Stack sections vertically */
+    gap: 20px;
   }
 
-  .pop-out-box {
-      max-width: 80%; /* Increase width for smaller screens */
+  .content-container {
+    flex-direction: column; /* Single column layout */
   }
 
-  .horizontal-form {
-      flex-direction: column;
-  }
-
-  .form-group {
-      width: 100%;
-  }
-
-  .form-group button {
-      width: 100%;
+  .self-diagnosis,
+  .sonography-upload {
+    width: 100%; /* Full-width for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
-  .pop-out-box {
-      max-width: 90%; /* Further increase width on very small screens */
-  }
-
-  .pop-out-box h2 {
-      font-size: 1.2em; /* Smaller font size for headings */
+  .self-diagnosis h2,
+  .sonography-upload h2 {
+    font-size: 1.2em; /* Smaller heading for very small screens */
   }
 
   .form-group button {
-      padding: 12px 24px; /* Increase button padding for better touch interaction */
-      font-size: 0.9em; /* Slightly smaller font size for buttons */
+    font-size: 0.9em;
+    padding: 10px 15px; /* Adjust padding for better touch interaction */
   }
 
-  .footer-container {
-      padding: 15px;
+  .upload-section input[type="file"] {
+    font-size: 12px; /* Smaller font size for file input */
   }
 }
