@@ -68,16 +68,7 @@ nav ul li a {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for each section */
 }
 
-.self-diagnosis {
-  background-color: #ffb6c1; /* Pink background for the Self Diagnosis form */
-}
-
-.self-diagnosis h2 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #333;
-}
-
+.self-diagnosis h2,
 .sonography-upload h2 {
   font-size: 1.5em;
   margin-bottom: 15px;
@@ -125,13 +116,13 @@ nav ul li a {
 }
 
 .symptom-question {
-  display: block; /* Display checkboxes on separate lines */
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
 }
 
 .symptom-question input[type="checkbox"] {
   margin-right: 10px;
-  vertical-align: middle; /* Align checkbox vertically */
 }
 
 .form-group button {
