@@ -50,13 +50,15 @@ nav ul li a {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px; /* Space between sections */
-  background-color: rgba(255, 255, 255, 0.85); /* Background color for content box */
+  background-color:rgba(255, 192, 203, 0.5); /* Background color for content box */
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for content box */
   width: 100%;
   max-width: 1200px; /* Optional: Adjust container width */
   margin: auto; /* Center on the page */
+  margin-top: 40px;
+
 }
 
 .self-diagnosis,
@@ -64,7 +66,7 @@ nav ul li a {
   flex: 1; /* Equal width for both sections */
   padding: 15px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #0a0a0a;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for each section */
 }
 
@@ -72,12 +74,12 @@ nav ul li a {
 .sonography-upload h2 {
   font-size: 1.5em;
   margin-bottom: 15px;
-  color: #333;
+  color: #0f0f0f;
 }
 
 .sonography-upload p {
   margin-bottom: 15px;
-  color: #555;
+  color: #070707;
 }
 
 .upload-section {
