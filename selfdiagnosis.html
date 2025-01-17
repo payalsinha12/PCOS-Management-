@@ -23,48 +23,48 @@
       </ul>
     </nav>
   </header>
-  
   <div class="main-content">
-    <div class="content-container">
+    <!-- Combined Content Container -->
+    <div class="content-box">
       <!-- Self Diagnosis Section -->
       <div class="self-diagnosis">
         <h2>Self Diagnosis</h2>
-        <form id="self-diagnosis-form">
+        <form id="self-diagnosis-form" class="horizontal-form">
           <div class="form-group">
-            <label>
-              <input type="checkbox" name="symptoms" value="Missed periods, irregular periods, or very light periods">
+            <label for="missed-periods" class="symptom-question">
+              <input type="checkbox" id="missed-periods" name="symptoms" value="Missed periods, irregular periods, or very light periods">
               Missed periods, irregular periods, or very light periods
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Ovaries that are large or have many cysts">
+            <label for="large-ovaries" class="symptom-question">
+              <input type="checkbox" id="large-ovaries" name="symptoms" value="Ovaries that are large or have many cysts">
               Ovaries that are large or have many cysts
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Excess body hair, including the chest, stomach, and back (hirsutism)">
+            <label for="excess-hair" class="symptom-question">
+              <input type="checkbox" id="excess-hair" name="symptoms" value="Excess body hair, including the chest, stomach, and back (hirsutism)">
               Excess body hair, including the chest, stomach, and back (hirsutism)
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Weight gain, especially around the belly (abdomen)">
+            <label for="weight-gain" class="symptom-question">
+              <input type="checkbox" id="weight-gain" name="symptoms" value="Weight gain, especially around the belly (abdomen)">
               Weight gain, especially around the belly (abdomen)
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Acne or oily skin">
+            <label for="acne" class="symptom-question">
+              <input type="checkbox" id="acne" name="symptoms" value="Acne or oily skin">
               Acne or oily skin
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Male-pattern baldness or thinning hair">
+            <label for="baldness" class="symptom-question">
+              <input type="checkbox" id="baldness" name="symptoms" value="Male-pattern baldness or thinning hair">
               Male-pattern baldness or thinning hair
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Infertility">
+            <label for="infertility" class="symptom-question">
+              <input type="checkbox" id="infertility" name="symptoms" value="Infertility">
               Infertility
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Small pieces of excess skin on the neck or armpits (skin tags)">
+            <label for="skin-tags" class="symptom-question">
+              <input type="checkbox" id="skin-tags" name="symptoms" value="Small pieces of excess skin on the neck or armpits (skin tags)">
               Small pieces of excess skin on the neck or armpits (skin tags)
             </label>
-            <label>
-              <input type="checkbox" name="symptoms" value="Dark or thick skin patches on the back of the neck, in the armpits, and under the breasts">
+            <label for="dark-skin-patches" class="symptom-question">
+              <input type="checkbox" id="dark-skin-patches" name="symptoms" value="Dark or thick skin patches on the back of the neck, in the armpits, and under the breasts">
               Dark or thick skin patches on the back of the neck, in the armpits, and under the breasts
             </label>
           </div>
@@ -85,6 +85,7 @@
       </div>
     </div>
   </div>
+  
   
 <script src="script1.js"></script>
 </body>
