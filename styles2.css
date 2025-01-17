@@ -100,19 +100,47 @@ nav ul li a {
   font-size: 1em;
 }
 
-/* Separate footer box styles */
-.footer-container {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  text-align: center;
-  align-self: center; /* Center horizontally */
-  margin-top: auto; /* Push to the bottom */
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between sections */
+  margin-top: 20px;
 }
 
-.footer-content {
-  max-width: 600px;
-  margin: 0 auto;
+.self-diagnosis,
+.sonography-upload {
+  flex: 1;
+  border: 1px solid #ddd; /* Optional: For better visualization */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.sonography-upload .upload-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the input and button */
+}
+
+.upload-section input[type="file"] {
+  font-size: 16px;
+}
+
+.upload-section button {
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #4CAF50; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-section button:hover {
+  background-color: #45a049;
+}
+
+
 
 .footer-content p {
   margin-bottom: 10px;
