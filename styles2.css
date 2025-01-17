@@ -116,7 +116,7 @@ nav ul li a {
 }
 
 .symptom-question {
-  display: flex;
+  display: block;
   align-items: center;
   margin-bottom: 10px;
 }
