@@ -69,6 +69,25 @@ nav ul li a {
   border: 1px solid #0a0a0a;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for each section */
 }
+/* Sonography Result Box */
+.sonography-results {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: #e6ffe6;
+  display: none; /* Initially hidden */
+}
+
+.sonography-results h3 {
+  font-size: 20px;
+}
+
+.sonography-results p {
+  font-size: 16px;
+  color: #333;
+}
+
 
 .self-diagnosis h2,
 .sonography-upload h2 {
@@ -102,6 +121,16 @@ nav ul li a {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.upload-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
 
 .upload-section button:hover {
   background-color: #45a049;
@@ -140,6 +169,69 @@ nav ul li a {
   background-color: #45a049;
 }
 
+.sonography-upload {
+  flex: 1; /* Equal width with other sections */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #171616;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  gap: 15px; /* Space between elements */
+}
+
+.sonography-upload h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #101010;
+}
+
+.sonography-upload p {
+  color: #0b0b0b;
+}
+
+.upload-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between input and button */
+}
+
+.upload-section input[type="file"] {
+  flex: 1; /* Allow file input to take available space */
+  font-size: 14px;
+}
+
+.upload-section button {
+  font-size: 1em;
+  padding: 10px 15px;
+  background-color: #4CAF50; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-section button:hover {
+  background-color: #45a049;
+}
+
+.upload-image {
+  display: flex; /* Ensures proper alignment of the image */
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+  max-width: 100%; /* Ensure it doesn't overflow the section */
+  margin-top: 15px; /* Space above the image */
+}
+
+.upload-image img {
+  max-width: 100%; /* Responsive width for the image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Optional: Rounded corners for the image */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow around the image */
+}
+
+
 /* Responsiveness */
 @media (max-width: 768px) {
   .content-box {
@@ -158,4 +250,6 @@ nav ul li a {
   .form-group button {
     width: 100%; /* Make buttons full-width for smaller screens */
   }
+
+
 }
