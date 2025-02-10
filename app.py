@@ -27,7 +27,7 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 import bcrypt  # Import bcrypt for password hashing
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['GET','POST'])
 def register():
     try:
         data = request.json
@@ -57,7 +57,7 @@ def register():
     
     
     
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     try:
         data = request.json
@@ -109,7 +109,7 @@ def allowed_file(filename):
 def home():
     return 'Welcome to the PCOS Detection API!'
 
-@app.route("/upload", methods=["POST"])
+@app.route("/upload", methods=['GET', 'POST'])
 def predict():
     try:
         print("🔍 Request received!")
