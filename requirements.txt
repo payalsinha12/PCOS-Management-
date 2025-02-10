@@ -1,0 +1,9 @@
+Flask
+Flask-CORS
+pymongo
+bcrypt
+tensorflow
+numpy
+opencv-python
+gunicorn
+python-dotenv
