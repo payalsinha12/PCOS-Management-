@@ -9,4 +9,4 @@ Lifestyle Suggestions:  Provides tips and advice on lifestyle changes that can i
 Contact Support:  Allows users to get in touch with experts for personalized advice and support. 
 Secure Login and Registration:  Ensures that user data is protected and provides a secure environment for accessing personalized features. 
 # Link : https://payalsinha12.github.io/PCOS-Management-/
-![Screenshot 2024-07-04 183850](https://payalsinha12.github.io/PCOS-Management-/)
+![Screenshot 2024-07-04 183850]("C:\Users\KIIT\Pictures\Screenshots\Screenshot 2025-02-10 132848.png")
