@@ -31,7 +31,7 @@ import bcrypt  # Import bcrypt for password hashing
 def register():
     try:
         data = request.json
-        email = data.get("username")  # Ensure the correct key is used
+        email = data.get("email")  # Ensure the correct key is used
         password = data.get("password")
 
         if not email or not password:
@@ -61,7 +61,7 @@ def register():
 def login():
     try:
         data = request.json
-        email = data.get("username")
+        email = data.get("email")
         password = data.get("password")
 
         if not email or not password:
@@ -175,7 +175,7 @@ def predict():
         print(f"❌ Error: {e}")
         return jsonify({"error": str(e)}), 500
 
-if __name__== "main":
+if __name__== "__main__":
 
     port = int(os.environ.get("PORT", 10000)) 
 
