@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(_name_)
+app = Flask(__name__)
 CORS(app)
 
 
@@ -175,7 +175,7 @@ def predict():
         print(f"❌ Error: {e}")
         return jsonify({"error": str(e)}), 500
 
-if _name_ == "main":
+if __name__== "main":
 
     port = int(os.environ.get("PORT", 10000)) 
 
