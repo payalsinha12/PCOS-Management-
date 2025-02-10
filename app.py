@@ -7,15 +7,25 @@ from tensorflow.keras.models import load_model
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from pymongo import MongoClient
+import bcrypt
+from dotenv import load_dotenv
 
-# Initialize Flask app
-MONGO_URI = "mongodb://localhost:27017"  # Change if using Atlas or another host
-client = MongoClient(MONGO_URI)
-db = client["pcos_db"]  # Database name
-users_collection = db["users"]
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
+
+
+
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+mongo_uri = os.getenv("MONGO_URI")
+client=MongoClient(mongo_uri)
+db = client["pcos_db"]  
+users_collection = db["users"]
+
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
+import bcrypt  # Import bcrypt for password hashing
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -32,11 +42,41 @@ def register():
         if existing_user:
             return jsonify({"error": "User already exists"}), 409
 
+        # Hash the password before storing
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
         # Insert into MongoDB
-        user_data = {"email": email, "password": password}
+        user_data = {"email": email, "password": hashed_password.decode('utf-8')}
         users_collection.insert_one(user_data)
 
         return jsonify({"message": "User registered successfully!"}), 201
+
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": str(e)}), 500
+    
+    
+    
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        data = request.json
+        email = data.get("username")
+        password = data.get("password")
+
+        if not email or not password:
+            return jsonify({"error": "Email and password are required"}), 400
+
+        # Find user in the database
+        user = users_collection.find_one({"email": email})
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        # Check if the password is correct
+        if not bcrypt.checkpw(password.encode('utf-8'), user["password"].encode('utf-8')):
+            return jsonify({"error": "Invalid credentials"}), 401
+
+        return jsonify({"message": "Login successful!"}), 200
 
     except Exception as e:
         print("Error:", e)
