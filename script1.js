@@ -1,83 +1,35 @@
 document.getElementById('submit-btn').addEventListener('click', function () {
-  
+  // Get the checked symptoms
   const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(input => input.value);
 
+  // Diagnosis condition based on the selected symptoms
   const missedPeriods = symptoms.includes("Missed periods, irregular periods, or very light periods");
   const acneOrOilySkin = symptoms.includes("Acne or oily skin");
   const largeOvaries = symptoms.includes("Ovaries that are large or have many cysts");
   const baldness = symptoms.includes("Male-pattern baldness or thinning hair");
   const infertility = symptoms.includes("Infertility");
 
-  
   let isPCOS = false;
+  let diagnosisMessage = ""; // To store the diagnosis message
 
- 
+  // Define the PCOS diagnosis conditions
   if (missedPeriods && (acneOrOilySkin && symptoms.length === 2)) {
     isPCOS = false;
-  }
-
-  
-  if (largeOvaries && baldness && infertility && (symptoms.length === 4 || symptoms.length === 5)) {
+  } else if (largeOvaries && baldness && infertility && (symptoms.length === 4 || symptoms.length === 5)) {
+    isPCOS = true;
+  } else if ((largeOvaries || baldness || infertility) && symptoms.length > 1) {
     isPCOS = true;
   }
 
- 
-  if ((largeOvaries || baldness || infertility) && symptoms.length > 1) {
-    isPCOS = true;
-  }
-
-  
-  let resultsMessage = '<h3>Diagnosis Result:</h3>';
+  // Set the diagnosis message based on the symptoms
   if (isPCOS) {
-    resultsMessage += '<p>Based on the selected symptoms, it seems you may have PCOS. Please consult a healthcare professional for a thorough diagnosis and advice.</p>';
+    diagnosisMessage = "Based on your symptoms, you may have PCOS. Please consult a doctor.";
   } else {
-    resultsMessage += '<p>No significant PCOS symptoms were selected. It is recommended to consult a healthcare professional for further evaluation.</p>';
+    diagnosisMessage = "No significant PCOS symptoms detected. Keep monitoring.";
   }
 
-  
- 
-  document.getElementById('diagnosis-results').innerHTML = resultsMessage;
-});
-
-document.getElementById('submit-btn').addEventListener('click', function () {
-
-  const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(input => input.value);
-
-  const missedPeriods = symptoms.includes("Missed periods, irregular periods, or very light periods");
-  const acneOrOilySkin = symptoms.includes("Acne or oily skin");
-  const largeOvaries = symptoms.includes("Ovaries that are large or have many cysts");
-  const baldness = symptoms.includes("Male-pattern baldness or thinning hair");
-  const infertility = symptoms.includes("Infertility");
-
-
-  let isPCOS = false;
-
-
-  if (missedPeriods && (acneOrOilySkin && symptoms.length === 2)) {
-      isPCOS = false;
-  }
-
-
-  if (largeOvaries && baldness && infertility && (symptoms.length === 4 || symptoms.length === 5)) {
-      isPCOS = true;
-  }
-
-
-  if ((largeOvaries || baldness || infertility) && symptoms.length > 1) {
-      isPCOS = true;
-  }
-
-
-  let resultsMessage = '<h3>Diagnosis Result:</h3>';
-  if (isPCOS) {
-      resultsMessage += '<p>Based on the selected symptoms, it seems you may have PCOS. Please consult a healthcare professional for a thorough diagnosis and advice.</p>';
-  } else {
-      resultsMessage += '<p>No significant PCOS symptoms were selected. It is recommended to consult a healthcare professional for further evaluation.</p>';
-  }
-
-
-
-  document.getElementById('diagnosis-results').innerHTML = resultsMessage;
+  // Display the diagnosis in the content box
+  document.getElementById('diagnosis-results').innerHTML = `<h3>Diagnosis Result:</h3><p>${diagnosisMessage}</p>`;
 });
 
 document.getElementById('upload-submit-btn').addEventListener('click', () => {
@@ -85,65 +37,48 @@ document.getElementById('upload-submit-btn').addEventListener('click', () => {
   const file = fileInput.files[0];
 
   if (!file) {
-      alert('Please select a file to upload!');
-      return;
+    // Simply update the content box instead of showing toast
+    document.getElementById('diagnosis-results').innerHTML = `<h3>Diagnosis Result:</h3><p>Please select a file to upload!</p>`;
+    return;
   }
-
-  console.log("Selected File:", file);
 
   const formData = new FormData();
   formData.append('file', file);
 
-  console.log("FormData Content:", formData.get('file'));
-
   fetch('http://127.0.0.1:5000/upload', {
-      method: 'POST',
-      body: formData,
-      headers: {
-          "Accept": "application/json"
-      }
+    method: 'POST',
+    body: formData,
+    headers: { "Accept": "application/json" }
   })
-  .then(response => {
-      if (!response.ok) {
-          return response.json().then(err => {throw new Error(err.error || "Upload failed")});
-      }
-      return response.json();
-  })
+  .then(response => response.json())
   .then(data => {
-      console.log("Server Response:", data);
-      if (data.error) {
-          alert(`Error: ${data.error}`);
-      } else {
-        let predictionMessage;
-    if (data.probability < 0.6) {
-        predictionMessage = "Less likely to have PCOS";
+    console.log("🚀 Server Response:", data); // Debugging log
+    console.log("🟢 pcos_infected value:", data.pcos_infected);
+    
+    let predictionMessage;
+
+    if (data.error) {
+        predictionMessage = `Error: ${data.error}`;
     } else {
-        predictionMessage = "More likely to have PCOS";
+        // 🔍 Ensure pcos_infected is treated as an integer
+        let predictedClass = Number(data.pcos_infected); 
+        console.log("🔵 Parsed Predicted Class:", predictedClass);
+
+        if (predictedClass === 0) {  
+          predictionMessage = "More likely to have PCOS based on sonography.";
+      } else if (predictedClass === 1) {  
+          predictionMessage = "Less likely to have PCOS based on sonography.";
+      } else {
+          predictionMessage = "Unable to determine PCOS status.";
+      }
+
     }
 
-    document.getElementById('diagnosis-results').innerHTML = `
-        <h3>Prediction Result:</h3>
-        <p>${predictionMessage} (Probability: ${data.probability.toFixed(2)})</p>
-    `; // Changed text
-
-      
-      }
+    // Update the result on the frontend in the content box
+    document.getElementById('diagnosis-results').innerHTML = `<h3>Diagnosis Result:</h3><p>${predictionMessage}</p>`;
   })
   .catch(error => {
-      console.error('Fetch Error:', error);
-      alert('An error occurred during the upload: ' + error.message);
+    // Display error in the content box
+    document.getElementById('diagnosis-results').innerHTML = `<h3>Diagnosis Result:</h3><p>An error occurred: ${error.message}</p>`;
   });
 });
-// Function to display the sonography result
-function displaySonographyResult(message, success) {
-  const resultDiv = document.getElementById('sonography-results');
-  resultDiv.innerHTML = `<h3>Sonography Report Result:</h3><p>${message}</p>`;
-
-  if (success) {
-    resultDiv.style.backgroundColor = '#e6ffe6'; // Light green for success
-  } else {
-    resultDiv.style.backgroundColor = '#ffcccc'; // Light red for error
-  }
-
-  resultDiv.style.display = 'block'; // Show the result box
-}

@@ -4,14 +4,17 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #ffb6c1, #e84393);
   color: #000; /* Black text color */
+  animation: fadeIn 1s ease-in-out; /* Fade in animation for body */
 }
 
+/* Header Container */
 .header-container {
   background-color: rgba(255, 255, 255, 0);
   padding: 10px 20px;
   position: relative;
   z-index: 1000;
   border-bottom: 1px solid #000;
+  animation: slideIn 0.5s ease-out; /* Slide in effect for header */
 }
 
 .header-container nav {
@@ -20,11 +23,15 @@ body {
   align-items: center;
 }
 
+/* Logo */
 .logo {
   max-width: 80px; /* Adjusted logo size */
   height: auto;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.5s forwards; /* Fade-in effect for logo */
 }
 
+/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -40,43 +47,69 @@ nav ul li a {
   text-decoration: none;
   color: #000000;
   font-weight: bold;
-  font-size: 1.0em; /* Adjusted font size for navigation links */
+  font-size: 1.0em;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #e84393; /* Hover effect for navigation links */
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #e84393;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
 }
 
 /* Main Content Box Styles */
 .content-box {
   display: flex;
-  flex-direction: row; /* Ensure side-by-side layout */
+  flex-direction: row; 
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px; /* Space between sections */
-  background-color:rgba(255, 192, 203, 0.5); /* Background color for content box */
+  gap: 20px;
+  background-color: rgba(255, 192, 203, 0.5);
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for content box */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 1200px; /* Optional: Adjust container width */
-  margin: auto; /* Center on the page */
+  max-width: 1200px;
+  margin: auto;
   margin-top: 40px;
-
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1s forwards; /* Fade in the content box */
 }
 
 .self-diagnosis,
 .sonography-upload {
-  flex: 1; /* Equal width for both sections */
+  flex: 1; 
   padding: 15px;
   border-radius: 8px;
   border: 1px solid #0a0a0a;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for each section */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1.5s forwards; /* Fade-in effect for each section */
 }
-/* Sonography Result Box */
+
 .sonography-results {
   margin-top: 20px;
   padding: 20px;
   border: 2px solid #ddd;
   border-radius: 5px;
   background-color: #e6ffe6;
-  display: none; /* Initially hidden */
+  display: none;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 2s forwards; /* Fade-in for result box */
 }
 
 .sonography-results h3 {
@@ -88,30 +121,7 @@ nav ul li a {
   color: #333;
 }
 
-
-.self-diagnosis h2,
-.sonography-upload h2 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #0f0f0f;
-}
-
-.sonography-upload p {
-  margin-bottom: 15px;
-  color: #070707;
-}
-
-.upload-section {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.upload-section input[type="file"] {
-  flex: 1;
-  font-size: 14px;
-}
-
+/* Button Hover Animations */
 .upload-section button {
   font-size: 1em;
   padding: 10px 15px;
@@ -120,8 +130,15 @@ nav ul li a {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
+.upload-section button:hover {
+  background-color: #45a049;
+  transform: scale(1.1); /* Slightly enlarge button on hover */
+}
+
+/* Hover effect for images */
 .upload-image img {
   display: block;
   max-width: 100%;
@@ -129,17 +146,17 @@ nav ul li a {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 10px;
+  transition: transform 0.3s ease;
 }
 
-
-.upload-section button:hover {
-  background-color: #45a049;
+.upload-image img:hover {
+  transform: scale(1.05); /* Slight zoom-in effect for images on hover */
 }
 
 /* Form Styling */
 .horizontal-form {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
+  flex-direction: column;
 }
 
 .form-group {
@@ -163,93 +180,50 @@ nav ul li a {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .form-group button:hover {
   background-color: #45a049;
+  transform: scale(1.05); /* Slight zoom effect on button hover */
 }
 
-.sonography-upload {
-  flex: 1; /* Equal width with other sections */
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #171616;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  
-  display: flex;
-  flex-direction: column; /* Stack content vertically */
-  gap: 15px; /* Space between elements */
+/* Slide-in Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
-.sonography-upload h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  color: #101010;
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
-.sonography-upload p {
-  color: #0b0b0b;
-}
-
-.upload-section {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between input and button */
-}
-
-.upload-section input[type="file"] {
-  flex: 1; /* Allow file input to take available space */
-  font-size: 14px;
-}
-
-.upload-section button {
-  font-size: 1em;
-  padding: 10px 15px;
-  background-color: #4CAF50; /* Button color */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.upload-section button:hover {
-  background-color: #45a049;
-}
-
-.upload-image {
-  display: flex; /* Ensures proper alignment of the image */
-  justify-content: center; /* Center the image horizontally */
-  align-items: center; /* Center the image vertically */
-  max-width: 100%; /* Ensure it doesn't overflow the section */
-  margin-top: 15px; /* Space above the image */
-}
-
-.upload-image img {
-  max-width: 100%; /* Responsive width for the image */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: Rounded corners for the image */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow around the image */
-}
-
 
 /* Responsiveness */
 @media (max-width: 768px) {
   .content-box {
-    flex-direction: column; /* Stack sections vertically */
+    flex-direction: column;
     gap: 20px;
   }
 
   .self-diagnosis,
   .sonography-upload {
-    width: 100%; /* Ensure full width on small screens */
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .upload-section button,
   .form-group button {
-    width: 100%; /* Make buttons full-width for smaller screens */
+    width: 100%;
   }
-
-
 }

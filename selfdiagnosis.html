@@ -23,8 +23,8 @@
       </ul>
     </nav>
   </header>
+
   <div class="main-content">
-    <!-- Combined Content Container -->
     <div class="content-box">
       <!-- Self Diagnosis Section -->
       <div class="self-diagnosis">
@@ -73,9 +73,8 @@
           </div>
         </form>
         <div id="diagnosis-results" class="diagnosis-results"></div>
-
       </div>
-  
+
       <!-- Sonography Upload Section -->
       <div class="sonography-upload">
         <h2>Sonography Upload</h2>
@@ -87,13 +86,127 @@
         <div class="upload-image">
           <img src="images/tests-Photoroom (1).png" alt="Take a Quiz">
         </div>
-      
-        <!-- Sonography result content box -->
-        <div id="sonography-results" class="sonography-results">
-          <!-- Result will be inserted here after upload -->
-        </div>
+        <div id="sonography-results" class="sonography-results"></div>
       </div>
-  
-<script src="script1.js"></script>
+    </div>
+  </div>
+
+  <script src="script1.js"></script>
+
+  <script>
+    // Self Diagnosis Form Submission
+    document.getElementById('submit-btn').addEventListener('click', function() {
+      let selectedSymptoms = [];
+      const checkboxes = document.querySelectorAll('input[name="symptoms"]:checked');
+      checkboxes.forEach(checkbox => {
+        selectedSymptoms.push(checkbox.value);
+      });
+
+      let diagnosisResult = "";
+
+      if (selectedSymptoms.length > 0) {
+        // Diagnosis logic similar to the one in your JS file
+        const missedPeriods = selectedSymptoms.includes("Missed periods, irregular periods, or very light periods");
+        const acneOrOilySkin = selectedSymptoms.includes("Acne or oily skin");
+        const largeOvaries = selectedSymptoms.includes("Ovaries that are large or have many cysts");
+        const baldness = selectedSymptoms.includes("Male-pattern baldness or thinning hair");
+        const infertility = selectedSymptoms.includes("Infertility");
+
+        let isPCOS = false;
+
+        // Diagnosis conditions based on symptoms
+        if (missedPeriods && (acneOrOilySkin && selectedSymptoms.length === 2)) {
+          isPCOS = false;
+        } else if (largeOvaries && baldness && infertility && (selectedSymptoms.length === 4 || selectedSymptoms.length === 5)) {
+          isPCOS = true;
+        } else if ((largeOvaries || baldness || infertility) && selectedSymptoms.length > 1) {
+          isPCOS = true;
+        }
+
+        diagnosisResult = isPCOS 
+          ? "Based on your symptoms, you may have PCOS. Please consult a doctor." 
+          : "No significant PCOS symptoms detected. Keep monitoring.";
+
+        // Display the diagnosis in the content box
+        document.getElementById('diagnosis-results').innerHTML = `<h3>Diagnosis Result:</h3><p>${diagnosisResult}</p>`;
+
+      }
+    });
+
+    // Sonography Upload Section
+    document.getElementById('upload-submit-btn').addEventListener('click', function() {
+      const fileInput = document.getElementById('sonography-file');
+      if (fileInput.files.length > 0) {
+        // Sonography file processing and prediction logic (to be added)
+        const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      // Send the file to the server for processing
+      fetch('http://127.0.0.1:5000/upload', {
+        method: 'POST',
+        body: formData,
+        headers: { "Accept": "application/json" }
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => { throw new Error(err.error || "Upload failed"); });
+        }
+        return response.json();
+      })
+      .then(data => {
+        let predictionMessage;
+        if (data.error) {
+          predictionMessage = `Error: ${data.error}`;
+          showToast(predictionMessage, "error"); // Show error toast if response has an error
+        } else {
+          // Check the probability and show corresponding result
+          if (data.prediction_class == 0) {
+            predictionMessage = "More likely to have PCOS based on sonography.";
+            showToast(predictionMessage, "success"); // Show success toast for low probability
+          } else {
+            predictionMessage = "Less likely to have PCOS based on sonography.";
+            showToast(predictionMessage, "error"); // Show error toast for high probability
+          }
+        }
+
+        // Display the result in the content box
+        document.getElementById('sonography-results').innerHTML = `<h3>Sonography Result:</h3><p>${predictionMessage}</p>`;
+        
+        // Toast notification for displaying the result
+        Toastify({
+          text: "Sonography result: " + predictionMessage,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)", // Example background for success
+          },
+          duration: 100000
+        }).showToast();
+      })
+      .catch(error => {
+        showToast(`An error occurred: ${error.message}`, "error"); // Show error toast on failure
+      });
+
+    } else {
+      showToast("Please select a file to upload!", "warning"); // Show warning toast if no file is selected
+    }
+  });
+
+  // Function to show toast notifications
+  function showToast(message, type = "success") {
+    let bgColor;
+    switch (type) {
+      case "success":
+        bgColor = "linear-gradient(to right, #00b09b, #96c93d)"; // Green
+        break;
+      case "error":
+        bgColor = "linear-gradient(to right, #ff416c, #ff4b2b)"; // Red
+        break;
+      case "warning":
+        bgColor = "linear-gradient(to right, #ffa502, #ff6348)"; // Orange
+        break;
+      default:
+        bgColor = "linear-gradient(to right, #555, #999)"; // Gray
+    }
+    };
+  </script>
 </body>
 </html>

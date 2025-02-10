@@ -1,12 +1,47 @@
 from flask import Flask, request, jsonify
 import os
+import numpy as np
+import cv2
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
-import tensorflow as tf
-import numpy as np
+from pymongo import MongoClient
+
+# Initialize Flask app
+MONGO_URI = "mongodb://localhost:27017"  # Change if using Atlas or another host
+client = MongoClient(MONGO_URI)
+db = client["pcos_db"]  # Database name
+users_collection = db["users"]
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/register', methods=['POST'])
+def register():
+    try:
+        data = request.json
+        email = data.get("username")  # Ensure the correct key is used
+        password = data.get("password")
+
+        if not email or not password:
+            return jsonify({"error": "Email and password are required"}), 400
+
+        # Check if user already exists
+        existing_user = users_collection.find_one({"email": email})
+        if existing_user:
+            return jsonify({"error": "User already exists"}), 409
+
+        # Insert into MongoDB
+        user_data = {"email": email, "password": password}
+        users_collection.insert_one(user_data)
+
+        return jsonify({"message": "User registered successfully!"}), 201
+
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": str(e)}), 500
+
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpeg'}
@@ -16,71 +51,88 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# Load Model
+# Load the trained model
 try:
-    model = tf.keras.models.load_model('model (2).h5')
-    print("Model loaded successfully.")
+    model = load_model("model (2).h5")
+    print("✅ Model loaded successfully.")
 except Exception as e:
-    print(f"Error loading model: {e}")
-    model = None
+    print(f"❌ Error loading model: {e}")
+    model = None  # Handle case when model fails to load
+
+# Define class labels
+class_labels = {0: 'infected', 1: 'non_infected'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def home():
-    return 'Welcome to the Flask application!'
+    return 'Welcome to the PCOS Detection API!'
 
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        print("No file part in request")
-        return jsonify({'error': 'No file part'}), 400
+@app.route("/upload", methods=["POST"])
+def predict():
+    try:
+        print("🔍 Request received!")
+        print(f"🔹 Content-Type: {request.content_type}")
+        print(f"🔹 Form data: {request.form}")
+        print(f"🔹 Files: {request.files}")
+        
+        if "file" not in request.files:
+            print(f"❌ No 'file' key found! Available keys: {list(request.files.keys())}")
+            return jsonify({"error": "No file part in request"}), 400
 
-    file = request.files['file']
-    print("Received File:", file.filename)
+        image_file = request.files["file"]
+        filename = secure_filename(image_file.filename)
+        print(f"📂 Uploaded file: {image_file.filename}")
 
-    if file.filename == '':
-        print("No selected file")
-        return jsonify({'error': 'No selected file'}), 400
-
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
+        if image_file.filename == '':
+            print("❌ No selected file!")
+            return jsonify({"error": "No selected file"}), 400
+        
+        # Check if file type is allowed
+        if not allowed_file(image_file.filename):
+            return jsonify({"error": "Invalid file type"}), 400
+        
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
+        image_file.save(filepath)
 
-        print("File saved at:", filepath)
+        # Read the saved image
+        image = cv2.imread(filepath)
+        if image is None:
+            return jsonify({"error": "Invalid image file"}), 400
 
-        try:
-            img = tf.keras.preprocessing.image.load_img(filepath, target_size=(224, 224))
-            img_array = tf.keras.preprocessing.image.img_to_array(img)
-            img_array = np.expand_dims(img_array, axis=0)
-            img_array = img_array / 255.0
+        # Convert to RGB if grayscale
+        if len(image.shape) == 2:
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
 
-            prediction = model.predict(img_array)
-            predicted_class = np.argmax(prediction[0])  # Get the class index
-            prediction_probability = prediction[0][predicted_class] # Get the probability of the predicted class
+        # Resize and normalize the image
+        image = cv2.resize(image, (224, 224))
+        image = image / 255.0
+        image = image.reshape(1, 224, 224, 3)
 
-            print("Prediction output:", prediction)
+        # Check if model is loaded
+        if model is None:
+            return jsonify({"error": "Model failed to load"}), 500
 
-            # Convert to True/False based on a threshold (adjust as needed)
-            threshold = 0.5 
-    # Return the prediction message along with the probability
-            prediction_result = int(prediction_probability > threshold)
-            prediction_result = str(prediction_probability > threshold).lower()
+        # Make prediction
+        prediction = model.predict(image)
+        predicted_class = np.argmax(prediction)
+        probability = float(prediction[0][predicted_class])
+        
+        print(f"Raw model output: {prediction}")
 
-            return jsonify({
-                'message': 'File uploaded and processed successfully!',
-                'prediction': prediction_result,  # Return True/False
-                'probability': float(prediction_probability), # Return the probability
-                'predicted_class': int(predicted_class)  # Return the predicted class index
-            })
-        except Exception as e:
-            print(f"Error during prediction: {e}")
-            return jsonify({'error': str(e)}), 500
-    else:
-        print("Invalid file type")
-        return jsonify({'error': 'Invalid file type'}), 400
+        response = {
+            "message": "Prediction successful",
+            "pcos_infected": int(predicted_class),
+            "label": class_labels[predicted_class],
+            "probability": probability
+        }
+        
+        print(f"🚀 Response to Postman: {response}")  # Debugging print
+        return jsonify(response), 200  # Ensure it returns a JSON response
 
-if __name__ == '__main__':
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        return jsonify({"error": str(e)}), 500
+if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
