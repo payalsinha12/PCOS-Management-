@@ -1,4 +1,5 @@
 Flask
+<<<<<<< HEAD
 flask-cors
 numpy
 opencv-python
@@ -6,3 +7,13 @@ tensorflow
 pymongo
 werkzeug
 gunicorn
+=======
+Flask-CORS
+pymongo
+bcrypt
+tensorflow
+numpy
+opencv-python
+gunicorn
+python-dotenv
+>>>>>>> 4990face1d0b11cf11e020a890fa6f9c73141865
