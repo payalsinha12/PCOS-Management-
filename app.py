@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/register": {"origins": "*"}, r"/login": {"origins": "*"}, r"/upload": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "POST", "OPTIONS"]}})
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 mongo_uri = os.getenv("MONGO_URI")
