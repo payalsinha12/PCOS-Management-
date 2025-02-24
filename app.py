@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import os
 import numpy as np
 import cv2
@@ -13,25 +13,56 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
-
-
+CORS(app, resources={r"/register": {"origins": "*"}, r"/login": {"origins": "*"}, r"/upload": {"origins": "*"}})
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 mongo_uri = os.getenv("MONGO_URI")
-client=MongoClient(mongo_uri)
-db = client["pcos_db"]  
-users_collection = db["users"]
 
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+# Connect to MongoDB
+try:
+    client = MongoClient(mongo_uri)
+    db = client["pcos_db"]  
+    users_collection = db["users"]
+    print("✅ MongoDB connected successfully!")
+except Exception as e:
+    print(f"❌ MongoDB connection failed: {e}")
 
-import bcrypt  # Import bcrypt for password hashing
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpeg'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/register', methods=['GET','POST'])
+# Ensure upload folder exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Load the trained model
+try:
+    model = load_model("model (2).h5")
+    print("✅ Model loaded successfully.")
+except Exception as e:
+    print(f"❌ Error loading model: {e}")
+    model = None  # Handle case when model fails to load
+
+# Define class labels
+class_labels = {0: 'infected', 1: 'non_infected'}
+
+# Utility function to check allowed file types
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Favicon handler to prevent 404 errors
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the PCOS Detection API!"}), 200
+
+@app.route('/register', methods=['POST'])
 def register():
     try:
         data = request.json
-        email = data.get("email")  # Ensure the correct key is used
+        email = data.get("email")
         password = data.get("password")
 
         if not email or not password:
@@ -42,22 +73,19 @@ def register():
         if existing_user:
             return jsonify({"error": "User already exists"}), 409
 
-        # Hash the password before storing
+        # Hash password before storing
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-        # Insert into MongoDB
-        user_data = {"email": email, "password": hashed_password.decode('utf-8')}
-        users_collection.insert_one(user_data)
+        # Insert user data into MongoDB
+        users_collection.insert_one({"email": email, "password": hashed_password.decode('utf-8')})
 
         return jsonify({"message": "User registered successfully!"}), 201
 
     except Exception as e:
-        print("Error:", e)
+        print(f"❌ Error in /register: {e}")
         return jsonify({"error": str(e)}), 500
-    
-    
-    
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route('/login', methods=['POST'])
 def login():
     try:
         data = request.json
@@ -79,78 +107,40 @@ def login():
         return jsonify({"message": "Login successful!"}), 200
 
     except Exception as e:
-        print("Error:", e)
+        print(f"❌ Error in /login: {e}")
         return jsonify({"error": str(e)}), 500
 
-
-UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpeg'}
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Ensure upload folder exists
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-# Load the trained model
-try:
-    model = load_model("model (2).h5")
-    print("✅ Model loaded successfully.")
-except Exception as e:
-    print(f"❌ Error loading model: {e}")
-    model = None  # Handle case when model fails to load
-
-# Define class labels
-class_labels = {0: 'infected', 1: 'non_infected'}
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-@app.route('/')
-def home():
-    return 'Welcome to the PCOS Detection API!'
-
-@app.route("/upload", methods=['GET', 'POST'])
+@app.route("/upload", methods=['POST'])
 def predict():
     try:
         print("🔍 Request received!")
-        print(f"🔹 Content-Type: {request.content_type}")
-        print(f"🔹 Form data: {request.form}")
-        print(f"🔹 Files: {request.files}")
-        
+
         if "file" not in request.files:
-            print(f"❌ No 'file' key found! Available keys: {list(request.files.keys())}")
             return jsonify({"error": "No file part in request"}), 400
 
         image_file = request.files["file"]
         filename = secure_filename(image_file.filename)
-        print(f"📂 Uploaded file: {image_file.filename}")
 
         if image_file.filename == '':
-            print("❌ No selected file!")
             return jsonify({"error": "No selected file"}), 400
-        
-        # Check if file type is allowed
+
         if not allowed_file(image_file.filename):
-            return jsonify({"error": "Invalid file type"}), 400
-        
+            return jsonify({"error": "Invalid file type. Only JPG, PNG, and JPEG allowed."}), 400
+
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image_file.save(filepath)
 
-        # Read the saved image
+        # Read and preprocess the image
         image = cv2.imread(filepath)
         if image is None:
             return jsonify({"error": "Invalid image file"}), 400
 
-        # Convert to RGB if grayscale
-        if len(image.shape) == 2:
-            image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
-
-        # Resize and normalize the image
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) if len(image.shape) == 3 else cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         image = cv2.resize(image, (224, 224))
         image = image / 255.0
         image = image.reshape(1, 224, 224, 3)
 
-        # Check if model is loaded
+        # Ensure model is loaded
         if model is None:
             return jsonify({"error": "Model failed to load"}), 500
 
@@ -158,8 +148,6 @@ def predict():
         prediction = model.predict(image)
         predicted_class = np.argmax(prediction)
         probability = float(prediction[0][predicted_class])
-        
-        print(f"Raw model output: {prediction}")
 
         response = {
             "message": "Prediction successful",
@@ -167,16 +155,14 @@ def predict():
             "label": class_labels[predicted_class],
             "probability": probability
         }
-        
-        print(f"🚀 Response to Postman: {response}")  # Debugging print
-        return jsonify(response), 200  # Ensure it returns a JSON response
+
+        print(f"🚀 Response: {response}")
+        return jsonify(response), 200
 
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"❌ Error in /upload: {e}")
         return jsonify({"error": str(e)}), 500
 
-if __name__== "__main__":
-
-    port = int(os.environ.get("PORT", 5000)) 
-
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
