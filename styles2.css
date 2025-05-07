@@ -4,14 +4,17 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #ffb6c1, #e84393);
   color: #000; /* Black text color */
+  animation: fadeIn 1s ease-in-out; /* Fade in animation for body */
 }
 
+/* Header Container */
 .header-container {
   background-color: rgba(255, 255, 255, 0);
   padding: 10px 20px;
   position: relative;
   z-index: 1000;
   border-bottom: 1px solid #000;
+  animation: slideIn 0.5s ease-out; /* Slide in effect for header */
 }
 
 .header-container nav {
@@ -20,11 +23,15 @@ body {
   align-items: center;
 }
 
+/* Logo */
 .logo {
   max-width: 80px; /* Adjusted logo size */
   height: auto;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.5s forwards; /* Fade-in effect for logo */
 }
 
+/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -40,45 +47,116 @@ nav ul li a {
   text-decoration: none;
   color: #000000;
   font-weight: bold;
-  font-size: 1.0em; /* Adjusted font size for navigation links */
+  font-size: 1.0em;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
-/* Main content styles */
-.main-content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Align items at the top */
-  min-height: calc(100vh - 60px); /* Adjust height to account for header */
-  padding: 20px;
+nav ul li a:hover {
+  color: #e84393; /* Hover effect for navigation links */
 }
 
-.image-container {
-  padding: 20px;
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #e84393;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
 }
 
-.image-container img {
-  max-width: 80%;
-  height: auto;
-  /* Remove box shadow and any other effects */
-}
-
-.pop-out-box {
-  background-color: rgba(241, 164, 185, 0.9); /* White background with slight opacity */
-  border-radius: 10px;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Pop-out shadow effect */
-  padding: 20px;
-  max-width: 40%; /* Adjusted width */
+nav ul li a:hover::after {
   width: 100%;
 }
 
-.pop-out-box h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+/* Main Content Box Styles */
+.content-box {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  background-color: rgba(255, 192, 203, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1s forwards; /* Fade in the content box */
 }
 
+.self-diagnosis,
+.sonography-upload {
+  flex: 1; 
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #0a0a0a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1.5s forwards; /* Fade-in effect for each section */
+}
+
+.sonography-results {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: #e6ffe6;
+  display: none;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 2s forwards; /* Fade-in for result box */
+}
+
+.sonography-results h3 {
+  font-size: 20px;
+}
+
+.sonography-results p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Button Hover Animations */
+.upload-section button {
+  font-size: 1em;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.upload-section button:hover {
+  background-color: #45a049;
+  transform: scale(1.1); /* Slightly enlarge button on hover */
+}
+
+/* Hover effect for images */
+.upload-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: transform 0.3s ease;
+}
+
+.upload-image img:hover {
+  transform: scale(1.05); /* Slight zoom-in effect for images on hover */
+}
+
+/* Form Styling */
 .horizontal-form {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
+  flex-direction: column;
 }
 
 .form-group {
@@ -86,8 +164,7 @@ nav ul li a {
 }
 
 .symptom-question {
-  display: flex;
-  align-items: center;
+  display: block;
   margin-bottom: 10px;
 }
 
@@ -98,79 +175,55 @@ nav ul li a {
 .form-group button {
   padding: 10px 20px;
   font-size: 1em;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Separate footer box styles */
-.footer-container {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  text-align: center;
-  align-self: center; /* Center horizontally */
-  margin-top: auto; /* Push to the bottom */
+.form-group button:hover {
+  background-color: #45a049;
+  transform: scale(1.05); /* Slight zoom effect on button hover */
 }
 
-.footer-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.footer-content p {
-  margin-bottom: 10px;
-}
-
-.footer-content input[type="file"] {
-  margin-bottom: 10px;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
-  .main-content {
-      padding: 20px 10px; /* Adjust padding for medium screens */
+/* Slide-in Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
   }
-
-  .pop-out-box {
-      max-width: 60%; /* Wider width on medium screens */
+  to {
+    transform: translateX(0);
   }
 }
 
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsiveness */
 @media (max-width: 768px) {
-  .main-content {
-      flex-direction: column;
-      align-items: center; /* Center items vertically */
+  .content-box {
+    flex-direction: column;
+    gap: 20px;
   }
 
-  .pop-out-box {
-      max-width: 80%; /* Increase width for smaller screens */
-  }
-
-  .horizontal-form {
-      flex-direction: column;
-  }
-
-  .form-group {
-      width: 100%;
-  }
-
-  .form-group button {
-      width: 100%;
+  .self-diagnosis,
+  .sonography-upload {
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .pop-out-box {
-      max-width: 90%; /* Further increase width on very small screens */
-  }
-
-  .pop-out-box h2 {
-      font-size: 1.2em; /* Smaller font size for headings */
-  }
-
+  .upload-section button,
   .form-group button {
-      padding: 12px 24px; /* Increase button padding for better touch interaction */
-      font-size: 0.9em; /* Slightly smaller font size for buttons */
-  }
-
-  .footer-container {
-      padding: 15px;
+    width: 100%;
   }
 }

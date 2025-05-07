@@ -2,7 +2,7 @@
 
 body {
     background: linear-gradient(to right, #ffb6c1, #e84393);
-    font-family: Arial, sans-serif; /* Example font-family */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -12,7 +12,7 @@ body {
     padding: 10px 20px;
     position: relative;
     z-index: 1000;
-    border-bottom: 1px solid #000; /* Maintain border style */
+    border-bottom: 1px solid #000;
 }
 
 .header-container nav {
@@ -42,6 +42,7 @@ nav ul li a {
     color: #000000;
     font-weight: bold;
     font-size: 1.0em;
+    animation: fadeInText 2s ease-out forwards;
 }
 
 .about-section {
@@ -49,19 +50,23 @@ nav ul li a {
     justify-content: center;
     align-items: center;
     padding: 50px 20px;
-    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+    flex-wrap: wrap;
 }
 
+/* Animation for content box */
 .about-book,
 .about-box {
     display: flex;
     width: 100%;
     max-width: 1200px;
-    background: rgba(255, 192, 203, 0.5); /* Light pink background */
+    background: rgba(255, 192, 203, 0.5);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 20px; /* Adjust spacing between boxes */
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInLeft 1s forwards;
 }
 
 .about-content {
@@ -74,18 +79,21 @@ nav ul li a {
     font-size: 2.5em;
     color: hsl(331, 98%, 35%);
     font-weight: bold;
+    animation: fadeInText 2s ease-out forwards;
 }
 
 .about-content p {
     font-size: 1.2em;
     line-height: 1.6;
     margin-bottom: 15px;
+    animation: fadeInText 3s ease-out forwards;
 }
 
 .about-content ul {
     font-size: 1.0em;
     line-height: 1.6;
     margin-bottom: 15px;
+    animation: fadeInText 4s ease-out forwards;
 }
 
 .about-image {
@@ -95,9 +103,9 @@ nav ul li a {
     margin: 20px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    animation: fadeInImage 2s ease-out forwards;
 }
 
-/* CSS for Slideshow */
 .slideshow-container {
     max-width: 100%;
     position: relative;
@@ -109,20 +117,56 @@ nav ul li a {
     animation: fadeEffect 2s;
 }
 
-@keyframes fadeEffect {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.about-book.show, .about-box.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Fade-in animation for text */
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide-in animation for content box */
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Fade-in effect for images */
+@keyframes fadeInImage {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 1200px) {
     .about-book,
     .about-box {
-        max-width: 90%; /* Adjust width for medium screens */
+        max-width: 90%;
     }
 
     .about-image {
-        width: 50%; /* Adjust image size for medium screens */
+        width: 50%;
     }
 }
 
@@ -148,30 +192,30 @@ nav ul li a {
     }
 
     .about-content h1 {
-        font-size: 2em; /* Adjusted font size for smaller screens */
+        font-size: 2em;
     }
 
     .about-content p {
-        font-size: 1em; /* Adjusted font size for smaller screens */
+        font-size: 1em;
     }
 
     .header-container {
         padding: 10px 20px;
-        border-bottom: 1px solid #000; /* Maintain border style */
+        border-bottom: 1px solid #000;
     }
 }
 
 @media (max-width: 480px) {
     .about-content h1 {
-        font-size: 1.8em; /* Further adjust font size for smaller screens */
+        font-size: 1.8em;
     }
 
     .about-content p {
-        font-size: 0.9em; /* Further adjust font size for smaller screens */
+        font-size: 0.9em;
     }
 
     .about-image {
-        width: 90%; /* Adjust image size for very small screens */
+        width: 90%;
         margin: 10px auto;
     }
 }

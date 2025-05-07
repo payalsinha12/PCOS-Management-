@@ -3,8 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PCOS Management - Register</title>
+  <title>PCOS Management - Register & Login</title>
   <link rel="stylesheet" href="styles9.css">
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin: 50px auto;
+      max-width: 900px;
+    }
+    .register-section, .login-section {
+      width: 45%;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
   <header class="header-container">
@@ -23,85 +50,48 @@
       </ul>
     </nav>
   </header>
+  
   <main>
-    <section class="register-section">
-      <h1>Create Your Account</h1>
-      <form id="registerForm">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-        <button type="button" onclick="createPassword()">Next</button>
-      </form>
-    </section>
-  </main>
-
-  <!-- Modal for Password Creation -->
-  <div id="passwordModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>Create Your Password</h2>
-      <form id="passwordForm">
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password:</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required>
-        </div>
-        <button type="button" onclick="savePassword()">Save Password</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Login Section -->
-  <section class="login-section">
-    <h1>Login</h1>
-    <form id="loginForm">
-      <div class="form-group">
-        <label for="loginEmail">Email:</label>
-        <input type="email" id="loginEmail" name="loginEmail" required>
-      </div>
-      <div class="form-group">
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="loginPassword" required>
-      </div>
-      <button type="button" onclick="login()">Login</button>
-      <p><a href="#" onclick="openForgotPassword()">Forgot Password?</a></p>
-    </form>
-  </section>
-
-  <!-- Forgot Password Modal -->
-  <div id="forgotPasswordModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeForgotPasswordModal()">&times;</span>
-      <h2>Forgot Password</h2>
-      <form id="forgotPasswordForm">
-        <div class="form-group">
-          <label for="forgotEmail">Email:</label>
-          <input type="email" id="forgotEmail" name="forgotEmail" required>
-        </div>
-        <button type="button" id="sendOTPButton">Send OTP</button>
-        <div id="otpSection" style="display: none;">
+    <div class="container">
+      <!-- Registration Form -->
+      <section class="register-section">
+        <h1>Create Your Account</h1>
+        <form id="registerForm">
           <div class="form-group">
-            <label for="otp">Enter OTP:</label>
-            <input type="text" id="otp" name="otp" required>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
           </div>
-          <button type="button" id="verifyOTPButton">Verify OTP</button>
-        </div>
-      </form>
-    </div>
-  </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="button" id="registerButton">Register</button>
+        </form>
+      </section>
 
-  <script src="script5.js"></script>
+      <!-- Login Form -->
+      <section class="login-section">
+        <h1>Login</h1>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" name="loginEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+          </div>
+          <button type="button" id="loginButton">Login</button>
+        </form>
+      </section>
+    </div>
+  </main>
+<div id="toast-container"></div>
+<script src="script5.js"></script>
+
 </body>
 </html>

@@ -11,7 +11,8 @@ body {
   padding: 10px 20px;
   position: relative;
   z-index: 1000;
-  border-bottom: 1px solid #000; /* Maintain border style */
+  border-bottom: 1px solid #000;
+  animation: fadeIn 1.5s ease-out;
 }
 
 .header-container nav {
@@ -23,6 +24,7 @@ body {
 .logo {
   max-width: 80px;
   height: auto;
+  animation: slideIn 1.5s ease-out;
 }
 
 nav ul {
@@ -40,11 +42,13 @@ nav ul li a {
   text-decoration: none;
   color: #000000;
   font-weight: bold;
+  animation: fadeInText 2s ease-out forwards;
 }
 
 .tracker-title {
   text-align: center;
   color: #000000;
+  animation: fadeInText 2s ease-out forwards;
 }
 
 .calendar-container {
@@ -63,6 +67,7 @@ nav ul li a {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
+  animation: slideIn 1.5s ease-out;
 }
 
 /* Add this to your CSS */
@@ -72,16 +77,17 @@ nav ul li a {
   background-color: #e3f2fd;
   border-radius: 8px;
   text-align: center;
-  position: relative; /* Ensure relative positioning for the dot */
+  position: relative;
+  animation: popIn 0.5s ease-out forwards;
 }
 
 .period-dot {
   display: block;
   width: 8px;
   height: 8px;
-  background-color:;
+  background-color: #ff6347;
   border-radius: 50%;
-  position: absolute; /* Position the dot inside the day */
+  position: absolute;
   top: 5px;
   left: 50%;
   transform: translateX(-50%);
@@ -103,11 +109,13 @@ nav ul li a {
   width: 45%;
   max-width: 400px;
   text-align: center;
+  animation: fadeInText 2s ease-out forwards;
 }
 
 .info-box img {
   width: 50%;
   border-radius: 8px;
+  animation: fadeInImage 2s ease-out forwards;
 }
 
 .form-container {
@@ -127,10 +135,12 @@ button {
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
+  animation: fadeInText 2s ease-out forwards;
 }
 
 button:hover {
   background-color: #ff6347;
+  animation: pulse 0.8s infinite;
 }
 
 /* Modal styles */
@@ -146,6 +156,7 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
+  animation: fadeIn 1s ease-out;
 }
 
 .modal-content {
@@ -155,6 +166,7 @@ button:hover {
   width: 80%;
   max-width: 500px;
   text-align: center;
+  animation: slideIn 1s ease-out;
 }
 
 .close-button {
@@ -177,60 +189,126 @@ button:hover {
   margin: 20px;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 /* Responsive Styles */
 @media (max-width: 1200px) {
   .calendar {
-      grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .info-box {
-      width: 90%;
+    width: 90%;
   }
 }
 
 @media (max-width: 768px) {
   .calendar {
-      grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .info-box {
-      width: 100%;
+    width: 100%;
   }
 
   .header-container nav {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   nav ul {
-      flex-direction: column;
-      padding: 0;
+    flex-direction: column;
+    padding: 0;
   }
 
   nav ul li {
-      margin: 10px 0;
+    margin: 10px 0;
   }
 
   .modal-content {
-      width: 90%;
+    width: 90%;
   }
 }
 
 @media (max-width: 480px) {
   .logo {
-      max-width: 60px;
+    max-width: 60px;
   }
 
   button {
-      font-size: 0.9em;
-      padding: 8px 16px;
+    font-size: 0.9em;
+    padding: 8px 16px;
   }
 
   .calendar {
-      grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .modal-content {
-      width: 95%;
+    width: 95%;
   }
 }
